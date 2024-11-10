@@ -4,6 +4,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CoursSession implements Comparable<CoursSession> {
     private final String departement;
@@ -74,5 +75,18 @@ public class CoursSession implements Comparable<CoursSession> {
         }
 
         return getNumero().compareTo(o.getNumero());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CoursSession that = (CoursSession) o;
+        return Objects.equals(departement, that.departement) && Objects.equals(numero, that.numero);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(departement, numero);
     }
 }
